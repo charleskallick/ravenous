@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import './searchbar.css';
  
@@ -45,15 +46,18 @@ class SearchBar extends React.Component {
  
    handleSearch(event) {
        this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+       
        event.preventDefault();
    };
  
    renderSortByOptions() {
        return Object.keys(this.sortByOptions).map(sortByOption => {
            let sortByOptionValue = this.sortByOptions[sortByOption];
-           return <li key={sortByOptionValue} 
-           className={this.getSortByClass(sortByOptionValue)}
-           onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>{sortByOption}</li>;
+           return (<li key={sortByOptionValue} 
+                    className={this.getSortByClass(sortByOptionValue)}
+                    onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>
+                {sortByOption}
+                </li>);
        });
    };
  
